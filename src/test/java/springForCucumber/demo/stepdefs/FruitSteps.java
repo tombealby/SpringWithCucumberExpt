@@ -1,4 +1,4 @@
-package springForCucumber.stepdefs;
+package springForCucumber.demo.stepdefs;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -13,8 +13,6 @@ import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.spring.CucumberContextConfiguration;
 
-@CucumberContextConfiguration
-//@SpringBootTest
 public class FruitSteps {
 	
 	@DataTableType
