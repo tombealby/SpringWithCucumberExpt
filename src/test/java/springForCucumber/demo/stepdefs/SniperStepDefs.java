@@ -22,11 +22,12 @@ public class SniperStepDefs extends RestUtils {
         ResponseEntity<String> response = startBidding();
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		final String actualResponseBody = response.getBody();
-        assertEquals("Received a request to join the auction" , actualResponseBody);
+        assertEquals("Received a message back from the auction, so take that to mean "
+        		+ "that I have joined the auction." , actualResponseBody);
 	}
 
 	private ResponseEntity<String> startBidding() throws HttpClientErrorException {
-	    final String url = "http://localhost:8093/receiveJoinRequest";
+	    final String url = "http://localhost:8092/startBidding";
 		return sendRequest(url);
 	}
 
