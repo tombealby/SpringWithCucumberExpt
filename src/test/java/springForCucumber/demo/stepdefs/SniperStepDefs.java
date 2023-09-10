@@ -22,8 +22,8 @@ public class SniperStepDefs extends RestUtils {
         ResponseEntity<String> response = startBidding();
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		final String actualResponseBody = response.getBody();
-        assertEquals("Received a message back from the auction, so take that to mean "
-        		+ "that I have joined the auction." , actualResponseBody);
+        assertEquals("Received an ok response from my request to join the auction, "
+        		+ "so take that to mean that I have joined the auction." , actualResponseBody);
 	}
 
 	private ResponseEntity<String> startBidding() throws HttpClientErrorException {
