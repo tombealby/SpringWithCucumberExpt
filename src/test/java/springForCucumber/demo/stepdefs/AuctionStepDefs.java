@@ -49,8 +49,17 @@ public class AuctionStepDefs extends RestUtils {
 
 	@When("the auction announces that it has closed")
 	public void the_auction_announces_that_it_has_closed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		closeAuction();
+		ResponseEntity<String> response = getAuctionStatus();
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		final String actualResponse = response.getBody();
+		final String expectedResponse = "current status:Closed";
+		assertEquals(expectedResponse, actualResponse);;
+	}
+
+	private void closeAuction() {
+	    final String url = "http://localhost:8093/closeAuction";
+		sendRequest(url);
 	}
 
 
