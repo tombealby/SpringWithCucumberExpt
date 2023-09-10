@@ -1,6 +1,6 @@
 package springForCucumber.demo.stepdefs;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
