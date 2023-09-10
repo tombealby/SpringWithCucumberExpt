@@ -33,7 +33,14 @@ public class SniperStepDefs extends RestUtils {
 
 	@Then("the sniper shows that it has lost the auction")
 	public void the_sniper_shows_that_it_has_lost_the_auction() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		ResponseEntity<String> response = getStatus();
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		final String actualResponseBody = response.getBody();
+        assertEquals("current status:Lost" , actualResponseBody);
+	}
+
+	private ResponseEntity<String> getStatus() throws HttpClientErrorException {
+	    final String url = "http://localhost:8092/getStatus";
+		return sendRequest(url);
 	}
 }
