@@ -35,8 +35,16 @@ public class AuctionStepDefs extends RestUtils {
 
 	@Then("the auction has received a join request from sniper")
 	public void the_auction_has_received_a_join_request_from_sniper() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		ResponseEntity<String> response = getReceiveStatus();
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		final String actualResponse = response.getBody();
+		final String expectedResponse = "ReceiveStatus:true";
+		assertEquals(expectedResponse, actualResponse);;
+	}
+
+	private ResponseEntity<String> getReceiveStatus() throws HttpClientErrorException {
+	    final String url = "http://localhost:8093/getReceiveStatus";
+		return sendRequest(url);
 	}
 
 	@When("the auction announces that it has closed")
