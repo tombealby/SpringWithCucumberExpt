@@ -70,4 +70,17 @@ public class AuctionStepDefs extends RestUtils {
 		sendRequest(url);
 	}
 
+	@Then("the auction has received a bid of {int}")
+	public void the_auction_has_received_a_bid_of(int expectedBidReceivedByAuction) {
+		ResponseEntity<String> response = getLatestBid();
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		final String actualResponse = response.getBody();
+		final String expectedResponse = "The latest bid received is:" + expectedBidReceivedByAuction;
+		assertEquals(expectedResponse, actualResponse);
+	}
+
+	private ResponseEntity<String> getLatestBid() throws HttpClientErrorException {
+	    final String url = "http://localhost:8093/getLatestBid";
+		return sendRequest(url);
+	}
 }
