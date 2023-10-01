@@ -11,7 +11,8 @@ import io.cucumber.junit.CucumberOptions;
 		tags = "@test and not @ignore",
 		plugin = {"pretty"},
 		features = "src/test/resources/features",
-		glue = "springForCucumber/demo/stepdefs")
+		glue = "springForCucumber/demo/stepdefs",
+		publish = false)
 public class TestRunner {
 
 }
