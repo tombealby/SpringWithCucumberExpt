@@ -62,11 +62,11 @@ public class AuctionStepDefs extends RestUtils {
 		sendRequest(url);
 	}
 
-	@Given("the auction has reported a price of {int} and increment of {int} to its participants")
-	public void the_auction_has_reported_a_price_of_and_increment_of_to_its_participants(final Integer currentPrice,
-			final Integer priceIncrement) {
-		final String url = "http://localhost:8093/reportPriceAndIncrement?currentPrice=" + currentPrice +
-				"&priceIncrement=" + priceIncrement;
+	@Given("the auction has reported a price of {int} and increment of {int} and current winning bidder of {string} to its participants")
+	public void the_auction_has_reported_a_price_of_and_increment_of_and_current_winning_bidder_of_to_its_participants(
+			Integer currentPrice, Integer priceIncrement, String currentWinningBidder) {
+		final String url = "http://localhost:8093/reportPriceAndIncrement?currentPrice=" + currentPrice
+				+ "&priceIncrement=" + priceIncrement + "&winningBidder=" + currentWinningBidder;
 		sendRequest(url);
 	}
 
