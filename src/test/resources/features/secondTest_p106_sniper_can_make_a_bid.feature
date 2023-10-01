@@ -9,6 +9,6 @@ Feature: Sniper can make a bid in response to a price reported by the auction
   Scenario: Sniper makes a bid in response to a price reported by the auction
     Given the auction has reported a price of 1000 and increment of 98 and current winning bidder of "other bidder" to its participants
     Then the sniper has made a bid of 1098
-    And the auction has received a bid of 1098
+    And the auction has received a bid of 1098 and from "sniper"
     When the auction announces that it has closed
     Then the sniper shows that it has lost the auction
