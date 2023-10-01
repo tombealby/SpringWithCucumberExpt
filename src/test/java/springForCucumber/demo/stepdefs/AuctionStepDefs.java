@@ -39,7 +39,7 @@ public class AuctionStepDefs extends RestUtils {
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		final String actualResponse = response.getBody();
 		final String expectedResponse = "ReceiveStatus:true";
-		assertEquals(expectedResponse, actualResponse);;
+		assertEquals(expectedResponse, actualResponse);
 	}
 
 	private ResponseEntity<String> getReceiveStatus() throws HttpClientErrorException {

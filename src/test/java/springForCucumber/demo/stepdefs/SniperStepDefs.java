@@ -43,4 +43,18 @@ public class SniperStepDefs extends RestUtils {
 	    final String url = "http://localhost:8092/getStatus";
 		return sendRequest(url);
 	}
+
+	@Then("the sniper has made a bid of {int}")
+	public void the_sniper_has_made_a_bid_of(final int expectedLatestBidBySniper) {
+		ResponseEntity<String> response = getLatestBidBySniper();
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		final String actualResponse = response.getBody();
+		final String expectedResponse = "My latest bid:" + expectedLatestBidBySniper;
+		assertEquals(expectedResponse, actualResponse);
+	}
+
+	private ResponseEntity<String> getLatestBidBySniper() throws HttpClientErrorException {
+	    final String url = "http://localhost:8092/getLatestBid";
+		return sendRequest(url);
+	}
 }
