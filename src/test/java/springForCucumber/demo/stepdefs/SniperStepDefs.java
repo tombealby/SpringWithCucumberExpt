@@ -45,7 +45,16 @@ public class SniperStepDefs extends RestUtils {
 	}
 
 	@Then("the sniper has made a bid of {int}")
-	public void the_sniper_has_made_a_bid_of(final int expectedLatestBidBySniper) {
+	public void the_sniper_has_made_a_bid_of(final int expectedLatestBidBySniper)
+			throws InterruptedException {
+		System.out.println("Test is sleeping for a second before checking sniper's latest"
+				+ " bid, to give sniper time to make a bid in a new thread.");
+		Thread.sleep(1000); // give sniper time to make its bid in response to
+		// being told of the price & increment by the auction. The sniper makes
+		// its bid in a new thread to that which received the price notification.
+		// Therefore if the tests checks the sniper's bit before the new thread
+		// has completed, the test fails because the sniper's expected bid is not
+		// up to date.
 		ResponseEntity<String> response = getLatestBidBySniper();
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		final String actualResponse = response.getBody();
