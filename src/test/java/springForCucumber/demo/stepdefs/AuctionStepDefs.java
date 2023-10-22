@@ -35,14 +35,14 @@ public class AuctionStepDefs extends RestUtils {
 
 	@Then("the auction has received a join request from sniper")
 	public void the_auction_has_received_a_join_request_from_sniper() {
-		ResponseEntity<String> response = getReceiveStatus();
+		ResponseEntity<String> response = getBidderJoinedStatus();
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		final String actualResponse = response.getBody();
-		final String expectedResponse = "ReceiveStatus:true for bidder:sniper";
+		final String expectedResponse = "Bidder \"sniper\" has joined the auction.";
 		assertEquals(expectedResponse, actualResponse);
 	}
 
-	private ResponseEntity<String> getReceiveStatus() throws HttpClientErrorException {
+	private ResponseEntity<String> getBidderJoinedStatus() throws HttpClientErrorException {
 	    final String url = "http://localhost:8093/getBidderJoinedStatus?bidder=sniper";
 		return sendRequest(url);
 	}
