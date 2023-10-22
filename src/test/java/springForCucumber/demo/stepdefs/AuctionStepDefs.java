@@ -38,12 +38,12 @@ public class AuctionStepDefs extends RestUtils {
 		ResponseEntity<String> response = getReceiveStatus();
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		final String actualResponse = response.getBody();
-		final String expectedResponse = "ReceiveStatus:true";
+		final String expectedResponse = "ReceiveStatus:true for bidder:sniper";
 		assertEquals(expectedResponse, actualResponse);
 	}
 
 	private ResponseEntity<String> getReceiveStatus() throws HttpClientErrorException {
-	    final String url = "http://localhost:8093/getReceiveStatus";
+	    final String url = "http://localhost:8093/getBidderJoinedStatus?bidder=sniper";
 		return sendRequest(url);
 	}
 
